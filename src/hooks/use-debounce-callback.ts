@@ -3,7 +3,7 @@ import { useRef } from 'react';
 
 
 export function useDebounceCallback<T extends (...args: any) => void>(callback: T, delay: number): T {
-    const timeoutRef = useRef<number | null>(null);
+    const timeoutRef = useRef<string | number | NodeJS.Timeout | undefined>(undefined);
 
     const debouncedCallback = (...args: any) => {
         if (timeoutRef.current !== null) {

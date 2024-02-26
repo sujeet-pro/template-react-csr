@@ -7,7 +7,6 @@ type FetchOptions = RequestInit & {
 export type useFetchResult<T> = { data: T | null, loading: boolean, error: Error | null }
 
 export function useFetch<T>(url: string | null, options?: FetchOptions): useFetchResult<T> {
-    // const useFetch = <T>(url: string, options: FetchOptions = {}): { data: T | null, loading: boolean, error: Error | null } => {
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);

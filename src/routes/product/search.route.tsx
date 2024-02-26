@@ -1,10 +1,12 @@
 import { useSearchParam } from '@/hooks/use-searchparam.hook'
 import { Link, Outlet } from 'react-router-dom'
 import { useProductsSearch } from './use-products.hook'
+import { useDebounce } from '@/hooks/use-debounce'
 
 export function ProductSearch() {
   const [searchQuery, setSearchQuery] = useSearchParam('q')
-  const { data, error, loading } = useProductsSearch(searchQuery)
+  const debouncedSearchQuery = useDebounce(searchQuery, 50)
+  const { data, error, loading } = useProductsSearch(debouncedSearchQuery)
   return (
     <div>
       <h1>Product Search</h1>
