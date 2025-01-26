@@ -1,2 +1,2 @@
 export { ProductDetails } from './details.route'
-export { ProductSearch } from "./search.route"
+export { ProductSearch } from './search.route'

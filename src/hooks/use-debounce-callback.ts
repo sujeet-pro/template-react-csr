@@ -1,18 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef } from 'react';
+import { useRef, useCallback } from 'react'
 
+export function useDebounceCallback<T extends (...args: any) => void>(
+  callback: T,
+  delay: number,
+) {
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-export function useDebounceCallback<T extends (...args: any) => void>(callback: T, delay: number): T {
-    const timeoutRef = useRef<string | number | NodeJS.Timeout | undefined>(undefined);
+  const debouncedCallback = useCallback(
+    (...args: Parameters<T>) => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current)
+      }
+      timeoutRef.current = setTimeout(() => {
+        callback(...args)
+      }, delay)
+    },
+    [callback, delay],
+  )
 
-    const debouncedCallback = (...args: any) => {
-        if (timeoutRef.current !== null) {
-            clearTimeout(timeoutRef.current);
-        }
-        timeoutRef.current = setTimeout(() => {
-            callback(...args);
-        }, delay);
-    };
-
-    return debouncedCallback as T;
+  return debouncedCallback
 }

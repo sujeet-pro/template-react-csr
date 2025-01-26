@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router'
 import { FaHouse } from 'react-icons/fa6'
 import { FaSearch } from 'react-icons/fa'
 

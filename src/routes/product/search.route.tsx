@@ -1,5 +1,5 @@
 import { useSearchParam } from '@/hooks/use-searchparam.hook'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router'
 import { useProductsSearch } from './use-products.hook'
 import { useDebounce } from '@/hooks/use-debounce'
 
